@@ -1,0 +1,11 @@
+rated_head_m   15
+rated_flow    7
+input_power_kw    750
+pump_efficiency    0.8
+turbine_efficiency   0.75
+generating_efficiency   0.97
+price_low_electricity   0.218
+price_up_electricity   0.545
+yield  680   kg/mu
+water_use_per_mu   1807   m3/mu
+rice_price   3.2   yuan/kg
