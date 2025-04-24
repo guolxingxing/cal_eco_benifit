@@ -110,16 +110,16 @@ int main() {
     double irrigation_time_diff[MAX_ROWS -1] = {0};  // 存储灌溉时间差（小时）
     double irrigation_flow[MAX_ROWS] = {0.0};  // 存储灌溉流量数（第4列）
     time_t irrigation_time[MAX_ROWS] = {0}; // 存储灌溉时间戳（第5列）
-
+    char time_start[50], time_end[50];
 
     int row = 0;  // 当前行号
 
     // 读取表头（跳过第一行）
     fgets(line, sizeof(line), csv_file);
 
+    char irrigation_time_str[300], electricity_time_str[300];
     // 读取数据
     while (fgets(line, sizeof(line), csv_file) && row < MAX_ROWS) {
-        char irrigation_time_str[300], electricity_time_str[300];
 
         // 解析time_flow数据
         //if (sscanf(line, "%d %lf %s %lf %s",
@@ -131,6 +131,9 @@ int main() {
                    irrigation_time_str) == 5) {
             //electricity_time[row] = parse_time(electricity_time_str);
             //irrigation_time[row] = parse_time(irrigation_time_str);
+            if (row == 0) {
+                strcpy(time_end, electricity_time_str);
+            }
             electricity_time[row] = convert_time_to_int(electricity_time_str);
             irrigation_time[row] = convert_time_to_int(irrigation_time_str);
             row++;
@@ -138,6 +141,8 @@ int main() {
             printf("第 %d 行数据格式不正确，跳过\n", row + 1);
         }
     }
+    strcpy(time_start, electricity_time_str);
+    printf("start: %s end:%s\n", time_start, time_end);
 
     fclose(csv_file);
     
@@ -219,6 +224,7 @@ int main() {
         return 1;
     }
 
+    fprintf(output_file, "collect_time: (%s)---(%s)\n", time_start, time_end);
     //fprintf(output_file, "总抽水耗能: %.2f kWh\n", total_energy_consumption_sum);
     fprintf(output_file, "electricity_produce: %.2f kWh\n", total_power_generation_capacity_sum);
     fprintf(output_file, "electricity_benefit: %.2f 元\n", benefit_power);
