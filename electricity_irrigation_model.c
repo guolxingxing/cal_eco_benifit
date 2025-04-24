@@ -224,7 +224,6 @@ int main() {
         return 1;
     }
 
-    fprintf(output_file, "collect_time: (%s)---(%s)\n", time_start, time_end);
     //fprintf(output_file, "总抽水耗能: %.2f kWh\n", total_energy_consumption_sum);
     fprintf(output_file, "electricity_produce: %.2f kWh\n", total_power_generation_capacity_sum);
     fprintf(output_file, "electricity_benefit: %.2f 元\n", benefit_power);
@@ -232,6 +231,7 @@ int main() {
     //fprintf(output_file, "单位产值耗水量: %.2f m3/kg\n", water_benefit_per_m3);
     fprintf(output_file, "irrigation_water: %.2f m3\n", total_water_consumption_sum);
     fprintf(output_file, "irrigation_benefit: %.2f 元\n", benefit_irrigation);
+    fprintf(output_file, "collect_time: (%s)-(%s)\n", time_start, time_end);
 
     fclose(output_file);
     printf("计算结果已保存至 electricity_irrigation_results.txt\n");
