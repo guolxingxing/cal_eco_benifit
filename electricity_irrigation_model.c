@@ -165,7 +165,7 @@ int main() {
     double total_energy_consumption_sum = 0;  // 总抽水耗能
     double total_power_generation_capacity_sum = 0; // 总发电量
 
-    // 计算单次发电功率
+    // 计算单次发电功率P =η⋅ρ⋅g⋅Q⋅H
     double generated_output = 1 * 9.81 * rated_flow * rated_head_m * turbine_efficiency;
 
     // 计算单次发电量
@@ -181,12 +181,12 @@ int main() {
     }
 
     // 计算最终发电效益
-    double benefit_power = total_power_generation_capacity_sum * price_up_electricity - total_energy_consumption_sum * price_low_electricity;
+    double benefit_power = total_power_generation_capacity_sum * price_up_electricity;
 
     // 输出结果
-    printf("总抽水耗能: %.2f kWh\n", total_energy_consumption_sum);
-    printf("总发电量: %.2f kWh\n", total_power_generation_capacity_sum);
-    printf("最终发电效益: %.2f 元\n", benefit_power);
+    //printf("总抽水耗能: %.2f kWh\n", total_energy_consumption_sum);
+    printf("electricity_produce: %.2f kWh\n", total_power_generation_capacity_sum);
+    printf("electricity_benefit: %.2f 元\n", benefit_power);
 
   
   
@@ -206,29 +206,29 @@ int main() {
     double benefit_irrigation =water_benefit_per_m3 * total_water_consumption_sum * rice_price;
 
     // 输出结果
-    printf("单位产值耗水量: %.2f m3/kg\n", water_benefit_per_m3);
-    printf("总耗水量: %.2f m3\n", total_water_consumption_sum);
-    printf("最终灌溉效益: %.2f 元\n", benefit_irrigation);
+    //printf("单位产值耗水量: %.2f m3/kg\n", water_benefit_per_m3);
+    printf("irrigation_water: %.2f m3\n", total_water_consumption_sum);
+    printf("irrigation_benefit: %.2f 元\n", benefit_irrigation);
 
 
    
     //--------------------------- 将结果保存到文件----------------------//
-    FILE *output_file = fopen("electricity_irigation_results.txt", "w");
+    FILE *output_file = fopen("electricity_irrigation_results.txt", "w");
     if (!output_file) {
         printf("无法创建 electricity_irrigation_results.txt 文件！\n");
         return 1;
     }
 
-    fprintf(output_file, "总抽水耗能: %.2f kWh\n", total_energy_consumption_sum);
-    fprintf(output_file, "总发电量: %.2f kWh\n", total_power_generation_capacity_sum);
-    fprintf(output_file, "最终发电效益: %.2f 元\n", benefit_power);
+    //fprintf(output_file, "总抽水耗能: %.2f kWh\n", total_energy_consumption_sum);
+    fprintf(output_file, "electricity_produce: %.2f kWh\n", total_power_generation_capacity_sum);
+    fprintf(output_file, "electricity_benefit: %.2f 元\n", benefit_power);
     
     //fprintf(output_file, "单位产值耗水量: %.2f m3/kg\n", water_benefit_per_m3);
-    fprintf(output_file, "总耗水量: %.2f m3\n", total_water_consumption_sum);
-    fprintf(output_file, "最终灌溉效益: %.2f 元\n", benefit_irrigation);
+    fprintf(output_file, "irrigation_water: %.2f m3\n", total_water_consumption_sum);
+    fprintf(output_file, "irrigation_benefit: %.2f 元\n", benefit_irrigation);
 
     fclose(output_file);
-    printf("计算结果已保存至 electricity_irigation_results.txt\n");
+    printf("计算结果已保存至 electricity_irrigation_results.txt\n");
     
     return 0;
 }
