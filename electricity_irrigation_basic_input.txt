@@ -7,5 +7,5 @@ generating_efficiency   0.97
 price_low_electricity   0.218
 price_up_electricity   0.545
 yield  680   kg/mu
-water_use_per_mu   1807   m3/mu
+water_use_per_mu   2400   m3/mu
 rice_price   3.2   yuan/kg
