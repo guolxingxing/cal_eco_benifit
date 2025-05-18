@@ -197,7 +197,8 @@ int main() {
   
     //-----------------------------灌溉效益计算----------------------------------//
     // 计算单位产值耗水量
-    double water_benefit_per_m3=water_use_per_mu/yield;
+    //double water_benefit_per_m3=water_use_per_mu/yield;
+    double water_benefit_per_m3=yield/water_use_per_mu;
 
     // 遍历数组计算耗水量累加值
     double total_water_consumption_sum= 0; // 总耗水量
